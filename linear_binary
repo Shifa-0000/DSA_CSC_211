@@ -1,0 +1,86 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class  Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+
+        int arr[] = new int[n];
+
+
+        System.out.println("Enter the elements:");
+        for(int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+
+        System.out.println("\nChoose Search Method:");
+        System.out.println("1. Linear Search");
+        System.out.println("2. Binary Search");
+        System.out.print("Enter choice: ");
+        int choice = sc.nextInt();
+
+
+        System.out.print("Enter value to search: ");
+        int key = sc.nextInt();
+
+        if(choice == 1) {
+
+
+            boolean found = false;
+
+            for(int i = 0; i < n; i++) {
+                if(arr[i] == key) {
+                    System.out.println("Value found at index: " + i);
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found) {
+                System.out.println("Value not found.");
+            }
+
+        }
+        else if(choice == 2) {
+
+
+            Arrays.sort(arr);
+
+            int low = 0;
+            int high = n - 1;
+            boolean found = false;
+
+            while(low <= high) {
+                int mid = (low + high) / 2;
+
+                if(arr[mid] == key) {
+                    System.out.println("Value found at index: " + mid);
+                    found = true;
+                    break;
+                }
+                else if(arr[mid] < key) {
+                    low = mid + 1;
+                }
+                else {
+                    high = mid - 1;
+                }
+            }
+
+            if(!found) {
+                System.out.println("Value not found.");
+            }
+        }
+        else {
+            System.out.println("Invalid choice.");
+        }
+
+        sc.close();
+    }
+}
